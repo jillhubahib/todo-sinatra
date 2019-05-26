@@ -10,3 +10,18 @@ Dir.glob(File.join(APP_ROOT, 'app', 'controllers', '*.rb')).each { |file| requir
 Dir.glob(File.join(APP_ROOT, 'app', 'models', '*.rb')).each { |file| require file }
 # require database configurations
 require File.join(APP_ROOT, 'config', 'database')
+
+# configure settings
+class ApplicationController < Sinatra::Base
+  set :root, APP_ROOT
+  set :views, File.join(APP_ROOT, "app", "views")
+
+  # enable :sessions
+  # set :expire_after, 2592000
+  use Rack::Session::Cookie, expire_after: 2592000, secret: 'mzKR8RGfQM2UVd6g'
+
+  configure :development do
+    use BetterErrors::Middleware
+    BetterErrors.application_root = File.expand_path('..', __FILE__)
+  end
+end

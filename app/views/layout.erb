@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Todo in Sinatra</title>
+    <link rel="stylesheet" href="/public/app.css">
+  </head>
+  <body>
+    <%= erb(:nav) %>
+
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <div class="row justify-content-md-center">
+          <div class="col-6">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+
+    </main><!-- /.container -->
+    <script src="/public/app.js"></script>
+  </body>
+</html>
