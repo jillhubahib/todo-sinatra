@@ -1,0 +1,11 @@
+development:
+  adapter: postgresql
+  database: todo_sinatra_development
+
+production:
+  adapter: postgresql
+  database: todo_sinatra
+
+test:
+  adapter: postgresql
+  database: todo_sinatra_test
