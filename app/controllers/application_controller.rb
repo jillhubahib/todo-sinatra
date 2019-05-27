@@ -12,6 +12,7 @@ class ApplicationController < Sinatra::Base
   # append assets paths
   assets.append_path 'public/stylesheets'
   assets.append_path 'public/javascripts'
+  assets.append_path File.join(Gem::Specification.find_by_name('popper_js').gem_dir, 'assets', 'javascripts')
 
   # compress assets
   assets.js_compressor =  :uglify
