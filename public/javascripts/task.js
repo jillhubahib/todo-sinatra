@@ -1,3 +1,13 @@
+function deleteTask(idOrAll) {
+  $.ajax({
+    	method: "DELETE",
+    	url: "/tasks/" + idOrAll
+    })
+    	.done(function() {
+    		window.location = "/tasks";
+    	});
+};
+
 function updateCounter(incrementOrDecrement) {
   currentValue = parseInt($('.task-active-counter').html());
   if (incrementOrDecrement === 'increment') {
@@ -26,4 +36,18 @@ $('.task-name').click(function() {
         updateCounter('decrement');
       }
 		});
+});
+
+$('.task-item-delete').click(function() {
+  $('.task-item-delete-confirmation').attr("data-value", $(this).attr('data-value'));
+  $('.task-modal').modal('show');
+});
+
+$('.task-item-delete-confirmation').click(function() {
+  deleteTask($(this).attr('data-value'));
+});
+
+$('.task-item-delete-all').click(function() {
+  $('.task-item-delete-confirmation').attr("data-value", 'all');
+  $('.task-modal').modal('show');
 });

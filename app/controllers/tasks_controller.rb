@@ -35,7 +35,26 @@ class TasksController < ApplicationController
     end
   end
 
+  delete '/tasks/?:id' do
+    protected!
+
+    delete_items
+  end
+
   private
+
+  def delete_items
+    if params[:id] == 'all' && current_user.tasks.completed.destroy_all
+      return json_success_return
+    end
+
+    task = current_user.tasks.find(params[:id])
+    if task && task.destroy
+      json_success_return
+    else
+      json_error_return
+    end
+  end
 
   def filter
     @filter ||= params[:filter]
@@ -47,5 +66,13 @@ class TasksController < ApplicationController
     else
       current_user.tasks.all
     end
+  end
+
+  def json_success_return
+    { status: 'success' }.to_json if request.xhr?
+  end
+
+  def json_error_return
+    { status: 'success' }.to_json if request.xhr?
   end
 end

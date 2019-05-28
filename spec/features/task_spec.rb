@@ -46,4 +46,20 @@ RSpec.describe 'Task' do
     page.has_css?('.task-name.completed', text: active_task.name, count: 1)
     expect(active_task.reload.completed_at).not_to be_nil
   end
+
+  it 'deletes a task' do
+    find("button[data-value=\"#{completed_task.id}\"]").click
+    find_button('Yes').click
+
+    expect(page).to have_no_content(completed_task.name)
+    expect(Task.find_by(id: completed_task.id)).to be_nil
+  end
+
+  it 'deletes all completed tasks' do
+    find_link('Completed').click
+    find_button('Delete All Items').click
+    find_button('Yes').click
+
+    expect(Task.completed.size).to eq 0
+  end
 end
