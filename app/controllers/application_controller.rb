@@ -3,8 +3,10 @@ require 'sinatra/base'
 require 'sprockets'
 require 'uglifier'
 require 'bootstrap'
-require 'pry-byebug'
-require 'better_errors'
+if development?
+  require 'pry-byebug'
+  require 'better_errors'
+end
 
 class ApplicationController < Sinatra::Base
   register Sinatra::ActiveRecordExtension

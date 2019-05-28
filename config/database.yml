@@ -1,11 +1,20 @@
-development:
+default: &default
   adapter: postgresql
+  encoding: unicode
+
+development:
+  <<: *default
   database: todo_sinatra_development
 
-production:
-  adapter: postgresql
-  database: todo_sinatra
-
 test:
-  adapter: postgresql
+  <<: *default
   database: todo_sinatra_test
+
+production:
+  <<: *default
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] %>
+  host: <%= ENV['DATABASE_HOST'] %>
+  pool: <%= ENV['DATABASE_POOL'] || ENV.fetch("RAILS_MAX_THREADS") { 5 } %>

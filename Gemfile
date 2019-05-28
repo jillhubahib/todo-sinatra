@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 ruby '~> 2.6.3'
 
 gem 'sinatra',              '~> 2.0', '>= 2.0.5'
-gem 'thin',                 '~> 1.7', '>= 1.7.2'
+gem 'puma',                 '~> 3.12', '>= 3.12.1', group: :production
 
 # assets
 gem 'sass',                 '~> 3.7', '>= 3.7.4'
@@ -19,6 +19,8 @@ gem 'sinatra-activerecord', '~> 2.0', '>= 2.0.13'
 gem 'rake',                 '~> 12.3', '>= 12.3.2' # to apply migrations
 gem 'pg',                   '~> 1.1', '>= 1.1.4'
 gem 'bcrypt',               '~> 3.1', '>= 3.1.12'
+
+gem 'require_all',          '~> 2.0'
 
 group :development do
   gem 'rerun'

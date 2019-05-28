@@ -4,12 +4,8 @@ Bundler.require
 # get the path of the root of the app
 APP_ROOT = File.expand_path("..", __dir__)
 
-# require the controller(s)
-Dir.glob(File.join(APP_ROOT, 'app', 'controllers', '*.rb')).each { |file| require file }
-# require the model(s)
-Dir.glob(File.join(APP_ROOT, 'app', 'models', '*.rb')).each { |file| require file }
-# require database configurations
-require File.join(APP_ROOT, 'config', 'database')
+require_all "#{APP_ROOT}/app"
+require_all "#{APP_ROOT}/config"
 
 # configure settings
 class ApplicationController < Sinatra::Base
