@@ -7,6 +7,8 @@ require 'pry-byebug'
 require 'better_errors'
 
 class ApplicationController < Sinatra::Base
+  register Sinatra::ActiveRecordExtension
+
   set :assets, Sprockets::Environment.new
 
   # append assets paths
@@ -42,6 +44,14 @@ class ApplicationController < Sinatra::Base
 
     def protected!
       halt 401, erb(:unauthorized) unless logged_in?
+    end
+
+    def show_active(filter, current_filter)
+      filter.to_s.downcase == current_filter || filter.to_s.downcase == '' ? 'active' : ''
+    end
+
+    def show_completed_by(is_completed, filter)
+      is_completed && (filter.nil? || filter && filter == 'all') ? 'completed' : ''
     end
   end
 end

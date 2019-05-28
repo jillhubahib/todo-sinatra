@@ -1,0 +1,30 @@
+<form action='/tasks' method='post'>
+  <input type="text" name="task[name]" class="form-control task-add" placeholder="Add a task" autofocus />
+</form>
+
+<div class="btn-group btn-group-toggle mt-3 mb-3 task-filter">
+  <a class="btn btn-secondary <%= show_active(@filter, 'all') %>" href="/tasks/all" role="button">All</a>
+  <a class="btn btn-secondary <%= show_active(@filter, 'active') %>" href="/tasks/active" role="button">Active</a>
+  <a class="btn btn-secondary <%= show_active(@filter, 'completed') %>" href="/tasks/completed" role="button">Completed</a>
+</div>
+
+<% unless @tasks.empty? %>
+  <div>
+    <ul class="list-group list-group-flush">
+      <% @tasks.each do |task| %>
+        <li class="list-group-item task-item <%= show_completed_by(!task.completed_at.nil?, filter) %>">
+          <span class="task-name" data-value="<%= task.id %>"> <%= task.name %> </span>
+
+        </li>
+      <% end %>
+    </ul>
+
+    <% if @filter == 'completed' %>
+      <button type="button" class="btn btn-outline-danger btn-sm mt-2 task-item-delete-all">Delete All Items</button>
+    <% else %>
+      <div class="alert alert-dark" role="alert">
+        <span class="font-weight-bold task-active-counter"><%= @active_count %></span> item/s left.
+      </div>
+    <% end %>
+  </div>
+<% end %>
