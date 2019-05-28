@@ -39,4 +39,11 @@ RSpec.describe 'Task' do
     expect(page).to have_content(task_name)
     expect(Task.find_by(name: task_name)).to be_truthy
   end
+
+  it 'completes a task' do
+    find('.task-name', text: active_task.name).click
+
+    page.has_css?('.task-name.completed', text: active_task.name, count: 1)
+    expect(active_task.reload.completed_at).not_to be_nil
+  end
 end

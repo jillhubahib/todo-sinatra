@@ -1,6 +1,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+//= require task
 
 $('#logout').click(function() {
 	$.ajax({

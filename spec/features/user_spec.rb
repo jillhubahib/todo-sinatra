@@ -13,7 +13,7 @@ RSpec.describe 'User' do
     new_user = User.last
     expect(new_user.username).to eq(user.username)
     expect(new_user.email).to eq(user.email)
-    # expect(page).to have_field("task[name]", placeholder: 'Add a task')
+    expect(page).to have_field("task[name]", placeholder: 'Add a task')
   end
 
   it 'can log in' do
@@ -23,6 +23,6 @@ RSpec.describe 'User' do
     fill_in 'user[email]', with: user.email
     fill_in 'user[password]', with: user.password
     click_on 'Submit'
-    # expect(page).to have_field("task[name]", placeholder: 'Add a task')
+    expect(page).to have_field("task[name]", placeholder: 'Add a task')
   end
 end

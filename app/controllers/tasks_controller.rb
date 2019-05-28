@@ -19,6 +19,22 @@ class TasksController < ApplicationController
     redirect '/tasks'
   end
 
+  put '/tasks/:id' do
+    protected!
+
+    task = current_user.tasks.find_by(id: params[:id])
+
+    if task
+      updated_attributes = params.dup
+      if params[:completed_at]
+        completed_at = task.completed_at.nil? ? Time.current : nil
+        updated_attributes[:completed_at] = completed_at
+      end
+
+      task.update(updated_attributes)
+    end
+  end
+
   private
 
   def filter

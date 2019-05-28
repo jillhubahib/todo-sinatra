@@ -14,7 +14,6 @@
       <% @tasks.each do |task| %>
         <li class="list-group-item task-item <%= show_completed_by(!task.completed_at.nil?, filter) %>">
           <span class="task-name" data-value="<%= task.id %>"> <%= task.name %> </span>
-
         </li>
       <% end %>
     </ul>
