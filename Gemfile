@@ -14,7 +14,7 @@ gem 'bootstrap',            '~> 4.3', '>= 4.3.1'
 gem 'uglifier',             '~> 4.1', '>= 4.1.20'
 
 # data persistence
-gem 'activerecord',         '~> 5.2', '>= 5.2.3'
+gem 'activerecord',         '~> 5.2'
 gem 'sinatra-activerecord', '~> 2.0', '>= 2.0.13'
 gem 'rake',                 '~> 12.3', '>= 12.3.2' # to apply migrations
 gem 'pg',                   '~> 1.1', '>= 1.1.4'
