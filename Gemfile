@@ -5,7 +5,7 @@ source 'https://rubygems.org'
 ruby '~> 2.6.3'
 
 gem 'sinatra',              '~> 2.0', '>= 2.0.5'
-gem 'puma',                 '~> 3.12', '>= 3.12.1', group: :production
+gem 'puma',                 '~> 4.3', group: :production
 
 # assets
 gem 'sass',                 '~> 3.7', '>= 3.7.4'
